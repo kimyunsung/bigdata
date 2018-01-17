@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Food Graph and Analysis | we make tend</title>
+ <link href="{{ url_for('static', filename='dist/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ url_for('static', filename='dist/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- NProgress -->
+     <link href="{{ url_for('static', filename='dist/css/nprogress.css') }}" rel="stylesheet">
+
+
+    <!-- Custom Theme Style -->
+    <link href="{{ url_for('static', filename='dist/css/custom.min.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body class="nav-md">
+
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+
+                <h3> {{name}} <small>{{name}}맛있어</small></h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+
+                    <span class="input-group-btn">
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>게시글 추이 <small>Sessions</small></h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="lineChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>좋아요 추이  <small>Sessions</small></h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="mybarChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>날씨요인 그래프 <small>Sessions</small></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="canvasRadar"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title"떤>
+                    <h2>추천 날씨<small>{{recommend[0]}}</small></h2>
+
+                    <div class="clearfix"></div>
+                    추천날씨:<br>
+                    {%if recommend[0]%}
+                    {{recommend[0]}}
+                    {% endif %},
+                    {%if recommend[1]%}
+                    {{recommend[1]}}
+                    {% endif %},
+                    {%if recommend[2]%}
+                    {{recommend[2]}}
+                    {% endif %}<br>
+                    비추천날씨:<br>
+                    {%if no_recommend[0]%}
+                    {{no_recommend[0]}}
+                    {% endif %},
+                    {%if no_recommend[1]%}
+                    {{no_recommend[1]}}
+                    {% endif %},
+                    {%if no_recommend[2]%}
+                    {{no_recommend[2]}}
+                    {% endif %},
+                  </div>
+                  <div class="x_content">
+                    <canvas id="canvasDoughnut">
+                      {{recommend}}
+                      {{no_recommend}}
+
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+          </div>
+        </div>
+        <!-- /page content -->
+
+
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ url_for('static', filename='assets/js/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src=" {{ url_for('static', filename='assets/js/nprogress.js') }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ url_for('static', filename='assets/js/Chart.min.js') }}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/custom.min.js') }}"></script>
+
+    <!-- Chart.js -->
+    <script>
+      Chart.defaults.global.legend = {
+        enabled: false
+      };
+      // Line chart
+      var ctx = document.getElementById("lineChart");
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels:{{data1}},
+          //["141201", "141202", "141203", "141204", "141205", "141206", "141207", "141208", "141209", "141210", "141211", "141212", "141213", "141214", "141215", "141216", "141217", "141218", "141219", "141220", "141221", "141222", "141223", "141224", "141225", "141226", "141227", "141228", "141229", "141230", "141231", "150101", "150102", "150103", "150104", "150105", "150106", "150107", "150108", "150109", "150110", "150111", "150112", "150113", "150114", "150115", "150116", "150117", "150118", "150119", "150120", "150121", "150122", "150123", "150124", "150125", "150126", "150127", "150128", "150129", "150130", "150131", "150201", "150202", "150203", "150204", "150205", "150206", "150207", "150208", "150209", "150210", "150211", "150212", "150213", "150214", "150215", "150216", "150217", "150218", "150219", "150220", "150221", "150222", "150223", "150224", "150225", "150226", "150227", "150228", "150301", "150302", "150303", "150304", "150305", "150306", "150307", "150308", "150309", "150310"],
+          datasets: [{
+            label: "게시글 수",
+            backgroundColor: "rgba(38, 185, 154, 0.31)",
+            borderColor: "rgba(38, 185, 154, 0.7)",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointBorderWidth: 1,
+            data: {{ data3 }}
+          }]
+        },
+      });
+      // Bar chart
+      var ctx = document.getElementById("mybarChart");
+      var mybarChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels:{{ data1 }},
+          //["141201", "141202", "141203", "141204", "141205", "141206", "141207", "141208", "141209", "141210", "141211", "141212", "141213", "141214", "141215", "141216", "141217", "141218", "141219", "141220", "141221", "141222", "141223", "141224", "141225", "141226", "141227", "141228", "141229", "141230", "141231", "150101", "150102", "150103", "150104", "150105", "150106", "150107", "150108", "150109", "150110", "150111", "150112", "150113", "150114", "150115", "150116", "150117", "150118", "150119", "150120", "150121", "150122", "150123", "150124", "150125", "150126", "150127", "150128", "150129", "150130", "150131", "150201", "150202", "150203", "150204", "150205", "150206", "150207", "150208", "150209", "150210", "150211", "150212", "150213", "150214", "150215", "150216", "150217", "150218", "150219", "150220", "150221", "150222", "150223", "150224", "150225", "150226", "150227", "150228", "150301", "150302", "150303", "150304", "150305", "150306", "150307", "150308", "150309", "150310"],
+          datasets: [{
+            label: "좋아요 수",
+            backgroundColor: "rgba(38, 185, 154, 0.31)",
+            borderColor: "rgba(38, 185, 154, 0.7)",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointBorderWidth: 1,
+            data: {{ data2 }}
+          }
+          ]
+        },
+      });
+      // Doughnut chart
+      var ctx = document.getElementById("canvasDoughnut");
+      var data = {
+        labels: ["천둥치는 날","안개 조금있는날","더운 날", "추운 날", "눈오는 날", "황사 주의","안개 많은날", "비오는 날"],
+        datasets: [{
+        label: '%',
+          data: {{data5}},
+          backgroundColor: [
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A",
+            "#3498DB",
+            "#34495E",
+            "#B370CF",
+            "#49A9EA"
+          ],
+          hoverBackgroundColor: [
+            "#34495E",
+            "#B370CF",
+            "#CFD4D8",
+            "#36CAAB",
+            "#49A9EA"
+          ]
+        }]
+      };
+      var canvasDoughnut = new Chart(ctx, {
+        type: 'doughnut',
+        //'pie',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: data,
+        option:{legend: {
+			display: false,
+		},
+		tooltips: {
+			enabled: false,
+		},showLabel: true,}
+      });
+      // Radar chart
+      var ctx = document.getElementById("canvasRadar");
+      var data = {
+        labels: ["thunder_lightning","halo","temperture_high", "temperture_low", "snow", "yellow_dust", "fog", "rain"],
+        datasets: [{
+          label: "날씨 요인",
+          backgroundColor: "rgba(3, 88, 106, 0.2)",
+          borderColor: "rgba(3, 88, 106, 0.80)",
+          pointBorderColor: "rgba(3, 88, 106, 0.80)",
+          pointBackgroundColor: "rgba(3, 88, 106, 0.80)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          data: {{data4}}
+        }, {
+          label: "My Second dataset",
+          backgroundColor: "rgba(38, 185, 154, 0.2)",
+          borderColor: "rgba(38, 185, 154, 0.85)",
+          pointColor: "rgba(38, 185, 154, 0.85)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          data: {{data4}}
+        }]
+      };
+      var canvasRadar = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+      });
+      // Pie chart
+      var ctx = document.getElementById("pieChart");
+      var data = {
+        datasets: [{
+          data: [120, 50, 140, 180, 100],
+          backgroundColor: [
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A",
+            "#3498DB"
+          ],
+          label: 'My dataset' // for legend
+        }],
+        labels: [
+          "Dark Gray",
+          "Purple",
+          "Gray",
+          "Green",
+          "Blue"
+        ]
+      };
+      var pieChart = new Chart(ctx, {
+        data: data,
+        type: 'pie',
+        otpions: {
+          legend: false
+        }
+      });
+      // PolarArea chart
+      var ctx = document.getElementById("polarArea");
+      var data = {
+        datasets: [{
+          data: [120, 50, 140, 180, 100],
+          backgroundColor: [
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A",
+            "#3498DB"
+          ],
+          label: 'My dataset' // for legend
+        }],
+        labels: [
+          "Dark Gray",
+          "Purple",
+          "Gray",
+          "Green",
+          "Blue"
+        ]
+      };
+      var polarArea = new Chart(ctx, {
+        data: data,
+        type: 'polarArea',
+        options: {
+          scale: {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+    <!-- /Chart.js -->
+  </body>
+</html></html>

@@ -1,0 +1,187 @@
+CTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Album example for Bootstrap</title>
+	
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+<!--대진-->
+	<script type="text/javascript">
+	function count_ck(){
+		babo=doument.getElementsByName("cklist[]");
+		ck_count =0;
+		ck_max = 3; //체크박스 선택 제한
+		for(i=0;i<babo.length;i++)
+		{
+			if(babo[i].checked)
+			{
+			 ck_count++;
+			}
+		}
+		if(ck_count > ck_max)
+		{
+			alert(ck_max+"개만 선택 가능해요");
+			return false;
+		}
+		}
+	</script>
+<!--대진 -->
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+      <a href="#" class="navbar-brand">TrendFomer</a>
+    </nav>
+    <div class="navbar navbar-full navbar-static-top navbar-dark bg-inverse">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <a href="#" class="navbar-brand">Album</a>
+      </div>
+    </div>
+
+    <section class="jumbotron text-xs-center">
+      <div class="container" id = "filters">
+        <div  align="left">
+          <p> 검색 조건을 선택해주세요. (3가지 이하) </p>
+	   <input type="checkbox" id="checkbox_1" class="fancy-check-btn"><label for="checkbox_1">Weekend</label>
+          <input type="checkbox" id="checkbox_2" class="fancy-check-btn"><label for="checkbox_2">Friday</label>
+          <input type="checkbox" id="checkbox_3" class="fancy-check-btn"><label for="checkbox_3">Rain</label>
+          <input type="checkbox" id="checkbox_4" class="fancy-check-btn"><label for="checkbox_4">Snow</label>
+          <input type="checkbox" id="checkbox_5" class="fancy-check-btn"><label for="checkbox_5">Fog</label></br></br>
+          <input type="checkbox" id="checkbox_6" class="fancy-check-btn"><label for="checkbox_6">Thunder_lightning</label>
+          <input type="checkbox" id="checkbox_7" class="fancy-check-btn"><label for="checkbox_7">Halo</label>
+          <input type="checkbox" id="checkbox_8" class="fancy-check-btn"><label for="checkbox_8">Lunar_halo</label>
+          <input type="checkbox" id="checkbox_9" class="fancy-check-btn"><label for="checkbox_9">Yellow_dust</label>
+          <input type="checkbox" id="checkbox_10" class="fancy-check-btn"><label for="checkbox_10">Temperature_high</label>
+          <input type="checkbox" id="checkbox_11" class="fancy-check-btn"><label for="checkbox_11">Temperature_low</label>
+          <p><a class="btn btn-secondary" role="button" onclick="myFunction()">Search</a></p>
+<!-- 하림이미지 갖고 오기-->
+
+  <table class="table table-striped">
+			<tr>
+			<td><img src="http://softwarechoco.cafe24.com/getImage.jsp?q=비빔밥"><p>예제1:비빔밥</td>
+			<td><img src="http://softwarechoco.cafe24.com/getImage.jsp?q=김치찌게"><p>김치찌게</td>
+			<td><img src="http://softwarechoco.cafe24.com/getImage.jsp?q=보쌈"><p>보쌈</td>
+			<td><img src="http://softwarechoco.cafe24.com/getImage.jsp?q=뚝배기불고기"><p>뚝배기불고기</td>
+		</tr>
+    </table>
+
+<!--하림-->
+<p ></p>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <div class="album text-muted">
+      <div class="container">
+
+        <div class="row" id="demo">
+          <!--<div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card">
+            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>-->
+
+      </div>
+    </div>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-xs-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      $(function () {
+        Holder.addTheme("thumb", { background: "#55595c", foreground: "#eceeef", text: "Thumbnail" });
+      });
+    </script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../bower_components/elasticsearch/elasticsearch.js"></script>
+    <script>
+    var elasticsearch = require('elasticsearch');
+    var client = new elasticsearch.Client({
+      host: 'localhost:9200',
+      log: 'trace'
+    });
+    </script>
+	<!--상민-->
+      <script>
+        (function($){
+          $(document).ready(function(){
+            $('#filters input').change(function(){
+              var n = $('#filters input:checked').length;
+              if(n >= 3){
+                $('#filters input:not(:checked)').attr("disabled", true);
+              }else{
+                $('#filters input').attr("disabled", false);
+              }
+            });
+          });
+        })(jQuery);
+      </script>
+<!--상민-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
